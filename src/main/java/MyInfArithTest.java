@@ -5,6 +5,7 @@ helped me debug my code effectively to get the right answers.**/
 
 public class MyInfArithTest {
     /*A runtests function that helps me run the tests and check if my answer matches the expected answers. */
+    static int c = 1;
     public static void runtests(String[] args){
         /*Storing the output of the calculation in the string a.*/
         String a = MyInfArith.MyInfArithCalc(args[0], args[1], args[2], args[3]);
@@ -14,7 +15,8 @@ public class MyInfArithTest {
         }
         /*If not, then we print the error message.*/
         else{
-            System.out.println("Success");
+            System.out.println("Success: " + c);
+            c++;
         }
     }
     /*List of test cases*/
@@ -44,5 +46,6 @@ public class MyInfArithTest {
         runtests(new String[]{"float", "add", "1.00000000", "-1.000", "0.00000000"});
         runtests(new String[]{"int", "sub", "-1", "-2", "1"});
         runtests(new String[]{"float", "mul", "-0.00000", "0.000000", "0.00000000000"});
+        runtests(new String[]{"int", "div", "-1", "1", "-1"});
     }
 }
