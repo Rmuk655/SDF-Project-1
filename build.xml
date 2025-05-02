@@ -1,0 +1,38 @@
+<!--In the given project arbitraryarithmetic, we are trying to create a jar file from the java programs AFloat and AInteger which are 
+currently present in the folder arbitraryarithmetic. This basedir or base directory is the directory from where you should look at the 
+relative paths and "." refers to the current path of the given ant file.-->
+<project name="arbitraryarithmetic" default="jar" basedir=".">
+    <!-- Set properties -->
+    <property name="src.dir"     value="src/main/java"/>
+    <property name="build.dir"   value="build/classes"/>
+    <property name="jar.dir"     value="build/jar"/>
+    <property name="main.class"  value="MyInfArith"/>
+    <property name="jar.name"    value="aarithmetic.jar"/>
+
+    <!-- Create build directories -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${jar.dir}"/>
+    </target>
+
+    <!-- Compile Java files -->
+    <!--includeantruntime = "false": It prevents Ant’s own libraries (like ant.jar) from being automatically added to the compiler’s 
+    classpath.-->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+    </target>
+
+    <!-- Package into a jar -->
+    <target name="jar" depends="compile">
+        <jar destfile="${jar.dir}/${jar.name}" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- Clean build directories -->
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+</project>
